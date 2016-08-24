@@ -16,7 +16,8 @@ namespace MusicService.Controllers
 
         [HttpGet]
         [Route("~/api/albums")]
-        public IHttpActionResult GetLabels()
+        // Return all Albums
+        public IHttpActionResult GetAlbums()
         {
             return Ok(db.Albums);
         }
@@ -24,6 +25,7 @@ namespace MusicService.Controllers
         [HttpGet]
         [Route("{albumId}")]
         [ResponseType(typeof(Album))]
+        // Return a specific Album based on {albumId}
         public async Task<IHttpActionResult> GetAlbum(int albumId)
         {
             Album album = await db.Albums.FindAsync(albumId);
@@ -38,6 +40,7 @@ namespace MusicService.Controllers
         [HttpPut]
         [Route("{albumId}")]
         [ResponseType(typeof(void))]
+        // Update an entire Album based on {albumId}
         public async Task<IHttpActionResult> PutAlbum(int albumId, Album album)
         {
             if (!ModelState.IsValid)
@@ -74,6 +77,7 @@ namespace MusicService.Controllers
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Album))]
+        // Create a new Album
         public async Task<IHttpActionResult> PostAlbum(Album album)
         {
             if (!ModelState.IsValid)
@@ -90,6 +94,7 @@ namespace MusicService.Controllers
         [HttpDelete]
         [Route("{albumId}")]
         [ResponseType(typeof(Album))]
+        // Delete an Album based on {albumId}. The deleted record is returned
         public async Task<IHttpActionResult> DeleteAlbum(int albumId)
         {
             Album album = await db.Albums.FindAsync(albumId);

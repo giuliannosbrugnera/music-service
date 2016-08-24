@@ -16,7 +16,8 @@ namespace MusicService.Controllers
 
         [HttpGet]
         [Route("~/api/bands")]
-        public IHttpActionResult GetLabels()
+        // Return all Bands
+        public IHttpActionResult GetBands()
         {
             return Ok(db.Bands);
         }
@@ -24,6 +25,7 @@ namespace MusicService.Controllers
         [HttpGet]
         [Route("{bandId}")]
         [ResponseType(typeof(Band))]
+        // Return a specific Band based on {bandId}
         public async Task<IHttpActionResult> GetBand(int bandId)
         {
             Band band = await db.Bands.FindAsync(bandId);
@@ -38,6 +40,7 @@ namespace MusicService.Controllers
         [HttpPut]
         [Route("{bandId}")]
         [ResponseType(typeof(void))]
+        // Update an entire Band based on {bandId}
         public async Task<IHttpActionResult> PutBand(int bandId, Band band)
         {
             if (!ModelState.IsValid)
@@ -74,6 +77,7 @@ namespace MusicService.Controllers
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Band))]
+        // Create a new Band
         public async Task<IHttpActionResult> PostBand(Band band)
         {
             if (!ModelState.IsValid)
@@ -90,6 +94,7 @@ namespace MusicService.Controllers
         [HttpDelete]
         [Route("{bandId}")]
         [ResponseType(typeof(Band))]
+        // Delete a Band based on {bandId}. The deleted record is returned
         public async Task<IHttpActionResult> DeleteBand(int bandId)
         {
             Band band = await db.Bands.FindAsync(bandId);

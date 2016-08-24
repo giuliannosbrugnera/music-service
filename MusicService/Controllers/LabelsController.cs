@@ -16,6 +16,7 @@ namespace MusicService.Controllers
 
         [HttpGet]
         [Route("~/api/labels")]
+        // Return all Record Labels
         public IHttpActionResult GetLabels()
         {
             return Ok(db.Labels);
@@ -24,6 +25,7 @@ namespace MusicService.Controllers
         [HttpGet]
         [Route("{labelId}")]
         [ResponseType(typeof(Label))]
+        // Return a specific Record Label based on {labelId}
         public async Task<IHttpActionResult> GetLabel(int labelId)
         {
             Label label = await db.Labels.FindAsync(labelId);
@@ -38,6 +40,7 @@ namespace MusicService.Controllers
         [HttpPut]
         [Route("{labelId}")]
         [ResponseType(typeof(void))]
+        // Update an entire Record Label based on {labelId}
         public async Task<IHttpActionResult> PutLabel(int labelId, Label label)
         {
             if (!ModelState.IsValid)
@@ -74,6 +77,7 @@ namespace MusicService.Controllers
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Label))]
+        // Create a new Record Label
         public async Task<IHttpActionResult> PostLabel(Label label)
         {
             if (!ModelState.IsValid)
@@ -90,6 +94,7 @@ namespace MusicService.Controllers
         [HttpDelete]
         [Route("{labelId}")]
         [ResponseType(typeof(Label))]
+        // Delete a Record Label based on {labelId}. The deleted record is returned
         public async Task<IHttpActionResult> DeleteLabel(int labelId)
         {
             Label label = await db.Labels.FindAsync(labelId);

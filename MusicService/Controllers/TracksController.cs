@@ -16,7 +16,8 @@ namespace MusicService.Controllers
 
         [HttpGet]
         [Route("~/api/tracks")]
-        public IHttpActionResult GetLabels()
+        // Return all Tracks
+        public IHttpActionResult GetTracks()
         {
             return Ok(db.Tracks);
         }
@@ -24,6 +25,7 @@ namespace MusicService.Controllers
         [HttpGet]
         [Route("{trackId}")]
         [ResponseType(typeof(Track))]
+        // Return a specific Track based on {trackId}
         public async Task<IHttpActionResult> GetTrack(int trackId)
         {
             Track track = await db.Tracks.FindAsync(trackId);
@@ -38,6 +40,7 @@ namespace MusicService.Controllers
         [HttpPut]
         [Route("{trackId}")]
         [ResponseType(typeof(void))]
+        // Update an entire Track based on {trackId}
         public async Task<IHttpActionResult> PutTrack(int trackId, Track track)
         {
             if (!ModelState.IsValid)
@@ -74,6 +77,7 @@ namespace MusicService.Controllers
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Track))]
+        // Create a new Track
         public async Task<IHttpActionResult> PostTrack(Track track)
         {
             if (!ModelState.IsValid)
@@ -90,6 +94,7 @@ namespace MusicService.Controllers
         [HttpDelete]
         [Route("{trackId}")]
         [ResponseType(typeof(Track))]
+        // Delete a Track based on {trackId}. The deleted record is returned
         public async Task<IHttpActionResult> DeleteTrack(int trackId)
         {
             Track track = await db.Tracks.FindAsync(trackId);
