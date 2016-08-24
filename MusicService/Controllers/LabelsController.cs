@@ -9,11 +9,17 @@ using MusicService.Models;
 
 namespace MusicService.Controllers
 {
+    /// <summary>
+    /// Some fancy controller.
+    /// </summary>
     [RoutePrefix("api/label")]
     public class LabelsController : ApiController
     {
         private MusicServiceContext db = new MusicServiceContext();
 
+        /// <summary>
+        /// Gets some very important data from the server.
+        /// </summary>
         [HttpGet]
         [Route("~/api/labels")]
         // Return all Record Labels
