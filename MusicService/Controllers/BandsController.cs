@@ -45,7 +45,7 @@ namespace MusicService.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (bandId != band.Id)
+            if (bandId != band.BandId)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace MusicService.Controllers
             db.Bands.Add(band);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = band.Id }, band);
+            return CreatedAtRoute("DefaultApi", new { id = band.BandId }, band);
         }
 
         [HttpDelete]
@@ -115,7 +115,7 @@ namespace MusicService.Controllers
 
         private bool BandExists(int id)
         {
-            return db.Bands.Count(e => e.Id == id) > 0;
+            return db.Bands.Count(e => e.BandId == id) > 0;
         }
     }
 }

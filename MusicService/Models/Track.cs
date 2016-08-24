@@ -1,4 +1,6 @@
-﻿namespace MusicService.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MusicService.Models
 {
     // Represent a Track. Associated with an Album
     public class Track
@@ -7,9 +9,9 @@
         public string Name { get; set; }
         public string Duration { get; set; }
         public int Number { get; set; }
-
-        // Foreign key
-        public int AlbumId { get; set; }
+        // Foreign key for Album
+        [ForeignKey("LabelId")]
+        public int AlbumRefId { get; set; }
         // Navigation property
         public Album Album { get; set; }
     }

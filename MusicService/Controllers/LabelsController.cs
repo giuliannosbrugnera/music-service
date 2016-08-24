@@ -45,7 +45,7 @@ namespace MusicService.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (labelId != label.Id)
+            if (labelId != label.LabelId)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace MusicService.Controllers
             db.Labels.Add(label);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = label.Id }, label);
+            return CreatedAtRoute("DefaultApi", new { id = label.LabelId }, label);
         }
 
         [HttpDelete]
@@ -115,7 +115,7 @@ namespace MusicService.Controllers
 
         private bool LabelExists(int id)
         {
-            return db.Labels.Count(e => e.Id == id) > 0;
+            return db.Labels.Count(e => e.LabelId == id) > 0;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace MusicService.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (albumId != album.Id)
+            if (albumId != album.AlbumId)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace MusicService.Controllers
             db.Albums.Add(album);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = album.Id }, album);
+            return CreatedAtRoute("DefaultApi", new { id = album.AlbumId }, album);
         }
 
         [HttpDelete]
@@ -115,7 +115,7 @@ namespace MusicService.Controllers
 
         private bool AlbumExists(int id)
         {
-            return db.Albums.Count(e => e.Id == id) > 0;
+            return db.Albums.Count(e => e.AlbumId == id) > 0;
         }
     }
 }
