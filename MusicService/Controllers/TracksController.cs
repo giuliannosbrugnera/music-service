@@ -9,23 +9,31 @@ using MusicService.Models;
 
 namespace MusicService.Controllers
 {
+    /// <summary>
+    /// Tracks controller.
+    /// </summary>
     [RoutePrefix("api/track")]
     public class TracksController : ApiController
     {
         private MusicServiceContext db = new MusicServiceContext();
 
+        /// <summary>
+        /// Return all Tracks.
+        /// </summary>
         [HttpGet]
         [Route("~/api/tracks")]
-        // Return all Tracks
         public IHttpActionResult GetTracks()
         {
             return Ok(db.Tracks);
         }
 
+        /// <summary>
+        /// Return a specific Track.
+        /// </summary>
+        /// <param name="trackId">Track identifier.</param>
         [HttpGet]
         [Route("{trackId}")]
         [ResponseType(typeof(Track))]
-        // Return a specific Track based on {trackId}
         public async Task<IHttpActionResult> GetTrack(int trackId)
         {
             Track track = await db.Tracks.FindAsync(trackId);
@@ -37,10 +45,14 @@ namespace MusicService.Controllers
             return Ok(track);
         }
 
+        /// <summary>
+        /// Update an entire Track.
+        /// </summary>
+        /// <param name="trackId">Track identifier.</param>
+        /// <param name="track">New object to be inserted.</param>
         [HttpPut]
         [Route("{trackId}")]
         [ResponseType(typeof(void))]
-        // Update an entire Track based on {trackId}
         public async Task<IHttpActionResult> PutTrack(int trackId, Track track)
         {
             if (!ModelState.IsValid)
@@ -74,10 +86,13 @@ namespace MusicService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Create a new Track.
+        /// </summary>
+        /// <param name="track">Object to be created.</param>
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Track))]
-        // Create a new Track
         public async Task<IHttpActionResult> PostTrack(Track track)
         {
             if (!ModelState.IsValid)
@@ -91,10 +106,13 @@ namespace MusicService.Controllers
             return CreatedAtRoute("DefaultApi", new { id = track.TrackId }, track);
         }
 
+        /// <summary>
+        /// Delete a specific Track.
+        /// </summary>
+        /// <param name="trackId">Track identifier.</param>
         [HttpDelete]
         [Route("{trackId}")]
         [ResponseType(typeof(Track))]
-        // Delete a Track based on {trackId}. The deleted record is returned
         public async Task<IHttpActionResult> DeleteTrack(int trackId)
         {
             Track track = await db.Tracks.FindAsync(trackId);

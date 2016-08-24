@@ -10,7 +10,7 @@ using MusicService.Models;
 namespace MusicService.Controllers
 {
     /// <summary>
-    /// Some fancy controller.
+    /// Record Labels controller.
     /// </summary>
     [RoutePrefix("api/label")]
     public class LabelsController : ApiController
@@ -18,16 +18,19 @@ namespace MusicService.Controllers
         private MusicServiceContext db = new MusicServiceContext();
 
         /// <summary>
-        /// Gets some very important data from the server.
+        /// Return all Record Labels.
         /// </summary>
         [HttpGet]
         [Route("~/api/labels")]
-        // Return all Record Labels
         public IHttpActionResult GetLabels()
         {
             return Ok(db.Labels);
         }
 
+        /// <summary>
+        /// Return a specific Record Label.
+        /// </summary>
+        /// <param name="labelId">Record Label identifier.</param>
         [HttpGet]
         [Route("{labelId}")]
         [ResponseType(typeof(Label))]
@@ -43,10 +46,14 @@ namespace MusicService.Controllers
             return Ok(label);
         }
 
+        /// <summary>
+        /// Update an entire Record Label.
+        /// </summary>
+        /// <param name="labelId">Record Label identifier.</param>
+        /// <param name="label">New object to be inserted.</param>
         [HttpPut]
         [Route("{labelId}")]
         [ResponseType(typeof(void))]
-        // Update an entire Record Label based on {labelId}
         public async Task<IHttpActionResult> PutLabel(int labelId, Label label)
         {
             if (!ModelState.IsValid)
@@ -80,10 +87,13 @@ namespace MusicService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Create a Record Label.
+        /// </summary>
+        /// <param name="label">Object to be created.</param>
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Label))]
-        // Create a new Record Label
         public async Task<IHttpActionResult> PostLabel(Label label)
         {
             if (!ModelState.IsValid)
@@ -97,10 +107,13 @@ namespace MusicService.Controllers
             return CreatedAtRoute("DefaultApi", new { id = label.LabelId }, label);
         }
 
+        /// <summary>
+        /// Delete a Record Label.
+        /// </summary>
+        /// <param name="labelId">Record Label identifier.</param>
         [HttpDelete]
         [Route("{labelId}")]
         [ResponseType(typeof(Label))]
-        // Delete a Record Label based on {labelId}. The deleted record is returned
         public async Task<IHttpActionResult> DeleteLabel(int labelId)
         {
             Label label = await db.Labels.FindAsync(labelId);

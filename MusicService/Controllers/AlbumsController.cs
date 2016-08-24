@@ -9,19 +9,29 @@ using MusicService.Models;
 
 namespace MusicService.Controllers
 {
+    /// <summary>
+    /// Albums controller.
+    /// </summary>
     [RoutePrefix("api/album")]
     public class AlbumsController : ApiController
     {
         private MusicServiceContext db = new MusicServiceContext();
 
+        /// <summary>
+        /// Return all Albums.
+        /// </summary>
         [HttpGet]
         [Route("~/api/albums")]
-        // Return all Albums
+        [ResponseType(typeof(Album))]
         public IHttpActionResult GetAlbums()
         {
             return Ok(db.Albums);
         }
 
+        /// <summary>
+        /// Return a specific Band.
+        /// </summary>
+        /// <param name="albumId">Band identifier.</param>
         [HttpGet]
         [Route("{albumId}")]
         [ResponseType(typeof(Album))]
@@ -37,6 +47,11 @@ namespace MusicService.Controllers
             return Ok(album);
         }
 
+        /// <summary>
+        /// Update an entire Album.
+        /// </summary>
+        /// <param name="albumId">Album identifier.</param>
+        /// <param name="album">New object to be inserted.</param>
         [HttpPut]
         [Route("{albumId}")]
         [ResponseType(typeof(void))]
@@ -74,10 +89,14 @@ namespace MusicService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Create a new Album.
+        /// </summary>
+        /// <param name="album">Object to be created.</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Album))]
-        // Create a new Album
         public async Task<IHttpActionResult> PostAlbum(Album album)
         {
             if (!ModelState.IsValid)
@@ -91,10 +110,14 @@ namespace MusicService.Controllers
             return CreatedAtRoute("DefaultApi", new { id = album.AlbumId }, album);
         }
 
+        /// <summary>
+        ///  Delete an Album.
+        /// </summary>
+        /// <param name="albumId">Album identifier.</param>
+        /// <returns>Deleted object.</returns>
         [HttpDelete]
         [Route("{albumId}")]
         [ResponseType(typeof(Album))]
-        // Delete an Album based on {albumId}. The deleted record is returned
         public async Task<IHttpActionResult> DeleteAlbum(int albumId)
         {
             Album album = await db.Albums.FindAsync(albumId);

@@ -481,15 +481,147 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:MusicService.Controllers.AlbumsController">
+            <summary>
+            Albums controller.
+            </summary>
+        </member>
+        <member name="M:MusicService.Controllers.AlbumsController.GetAlbums">
+            <summary>
+            Return all Albums.
+            </summary>
+        </member>
+        <member name="M:MusicService.Controllers.AlbumsController.GetAlbum(System.Int32)">
+            <summary>
+            Return a specific Band.
+            </summary>
+            <param name="albumId">Band identifier.</param>
+        </member>
+        <member name="M:MusicService.Controllers.AlbumsController.PutAlbum(System.Int32,MusicService.Models.Album)">
+            <summary>
+            Update an entire Album.
+            </summary>
+            <param name="albumId">Album identifier.</param>
+            <param name="album">New object to be inserted.</param>
+        </member>
+        <member name="M:MusicService.Controllers.AlbumsController.PostAlbum(MusicService.Models.Album)">
+            <summary>
+            Create a new Album.
+            </summary>
+            <param name="album">Object to be created.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MusicService.Controllers.AlbumsController.DeleteAlbum(System.Int32)">
+            <summary>
+             Delete an Album.
+            </summary>
+            <param name="albumId">Album identifier.</param>
+            <returns>Deleted object.</returns>
+        </member>
+        <member name="T:MusicService.Controllers.BandsController">
+            <summary>
+            Bands controller.
+            </summary>
+        </member>
+        <member name="M:MusicService.Controllers.BandsController.GetBands">
+            <summary>
+            Return all Bands.
+            </summary>
+        </member>
+        <member name="M:MusicService.Controllers.BandsController.GetBand(System.Int32)">
+            <summary>
+            Return a specific Band.
+            </summary>
+            <param name="bandId">Band identifier.</param>
+        </member>
+        <member name="M:MusicService.Controllers.BandsController.PutBand(System.Int32,MusicService.Models.Band)">
+            <summary>
+            Update an entire Band.
+            </summary>
+            <param name="bandId">Band identifier.</param>
+            <param name="band">New object to be inserted.</param>
+        </member>
+        <member name="M:MusicService.Controllers.BandsController.PostBand(MusicService.Models.Band)">
+            <summary>
+            Create a new Band.
+            </summary>
+            <param name="band">Object to be created.</param>
+        </member>
+        <member name="M:MusicService.Controllers.BandsController.DeleteBand(System.Int32)">
+            <summary>
+            Delete a Band.
+            </summary>
+            <param name="bandId">Band identifier.</param>
+        </member>
         <member name="T:MusicService.Controllers.LabelsController">
             <summary>
-            Some fancy controller.
+            Record Labels controller.
             </summary>
         </member>
         <member name="M:MusicService.Controllers.LabelsController.GetLabels">
             <summary>
-            Gets some very important data from the server.
+            Return all Record Labels.
             </summary>
+        </member>
+        <member name="M:MusicService.Controllers.LabelsController.GetLabel(System.Int32)">
+            <summary>
+            Return a specific Record Label.
+            </summary>
+            <param name="labelId">Record Label identifier.</param>
+        </member>
+        <member name="M:MusicService.Controllers.LabelsController.PutLabel(System.Int32,MusicService.Models.Label)">
+            <summary>
+            Update an entire Record Label.
+            </summary>
+            <param name="labelId">Record Label identifier.</param>
+            <param name="label">New object to be inserted.</param>
+        </member>
+        <member name="M:MusicService.Controllers.LabelsController.PostLabel(MusicService.Models.Label)">
+            <summary>
+            Create a Record Label.
+            </summary>
+            <param name="label">Object to be created.</param>
+        </member>
+        <member name="M:MusicService.Controllers.LabelsController.DeleteLabel(System.Int32)">
+            <summary>
+            Delete a Record Label.
+            </summary>
+            <param name="labelId">Record Label identifier.</param>
+        </member>
+        <member name="T:MusicService.Controllers.TracksController">
+            <summary>
+            Tracks controller.
+            </summary>
+        </member>
+        <member name="M:MusicService.Controllers.TracksController.GetTracks">
+            <summary>
+            Return all Tracks.
+            </summary>
+        </member>
+        <member name="M:MusicService.Controllers.TracksController.GetTrack(System.Int32)">
+            <summary>
+            Return a specific Track.
+            </summary>
+            <param name="trackId">Track identifier.</param>
+        </member>
+        <member name="M:MusicService.Controllers.TracksController.PutTrack(System.Int32,MusicService.Models.Track)">
+            <summary>
+            Update an entire Track.
+            </summary>
+            <param name="trackId">Track identifier.</param>
+            <param name="track">New object to be inserted.</param>
+        </member>
+        <member name="M:MusicService.Controllers.TracksController.PostTrack(MusicService.Models.Track)">
+            <summary>
+            Create a new Track.
+            </summary>
+            <param name="track">Object to be created.</param>
+        </member>
+        <member name="M:MusicService.Controllers.TracksController.DeleteTrack(System.Int32)">
+            <summary>
+            Delete a specific Track.
+            </summary>
+            <param name="trackId">Track identifier.</param>
         </member>
     </members>
 </doc>
