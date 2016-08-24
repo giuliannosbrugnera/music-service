@@ -45,7 +45,7 @@ namespace MusicService.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (trackId != track.Id)
+            if (trackId != track.TrackId)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace MusicService.Controllers
             db.Tracks.Add(track);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = track.Id }, track);
+            return CreatedAtRoute("DefaultApi", new { id = track.TrackId }, track);
         }
 
         [HttpDelete]
@@ -115,7 +115,7 @@ namespace MusicService.Controllers
 
         private bool TrackExists(int id)
         {
-            return db.Tracks.Count(e => e.Id == id) > 0;
+            return db.Tracks.Count(e => e.TrackId == id) > 0;
         }
     }
 }

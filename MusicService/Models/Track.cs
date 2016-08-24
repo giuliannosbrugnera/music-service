@@ -5,9 +5,9 @@ namespace MusicService.Models
     // Represent a Track. Associated with an Album
     public class Track
     {
-        public int Id { get; set; }
+        public int TrackId { get; set; }
         public string Name { get; set; }
-        public string Duration { get; set; }
+        public string Lenght { get; set; }
         public int Number { get; set; }
         // Foreign key for Album
         [ForeignKey("Album")]

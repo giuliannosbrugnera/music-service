@@ -7,9 +7,8 @@ namespace MusicService.Models
     {
         public int BandId { get; set; }
         public string Name { get; set; }
-        public string MembersNames { get; set; }
         public string Genre { get; set; }
-        public int FormationYear { get; set; }
+        public string Country { get; set; }
         // Foreign key for Label
         [ForeignKey("Label")]
         public int LabelRefId { get; set; }
