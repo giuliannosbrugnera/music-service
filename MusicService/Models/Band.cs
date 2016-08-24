@@ -11,7 +11,7 @@ namespace MusicService.Models
         public string Genre { get; set; }
         public int FormationYear { get; set; }
         // Foreign key for Label
-        [ForeignKey("LabelId")]
+        [ForeignKey("Label")]
         public int LabelRefId { get; set; }
         // Navigation property
         public Label Label { get; set; }

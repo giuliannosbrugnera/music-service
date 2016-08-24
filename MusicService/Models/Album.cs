@@ -9,7 +9,7 @@ namespace MusicService.Models
         public string Name { get; set; }
         public int ReleaseYear { get; set; }
         // Foreign key for Band
-        [ForeignKey("BandId")]
+        [ForeignKey("Band")]
         public int BandRefId { get; set; }
         // Navigation property
         public Band Band { get; set; }

@@ -10,7 +10,7 @@ namespace MusicService.Models
         public string Duration { get; set; }
         public int Number { get; set; }
         // Foreign key for Album
-        [ForeignKey("LabelId")]
+        [ForeignKey("Album")]
         public int AlbumRefId { get; set; }
         // Navigation property
         public Album Album { get; set; }
