@@ -22,6 +22,7 @@ namespace MusicService.Controllers
         /// </summary>
         [HttpGet]
         [Route("~/api/tracks")]
+        [ResponseType(typeof(Track))]
         public IHttpActionResult GetTracks()
         {
             return Ok(db.Tracks);

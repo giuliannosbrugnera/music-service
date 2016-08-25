@@ -22,6 +22,7 @@ namespace MusicService.Controllers
         /// </summary>
         [HttpGet]
         [Route("~/api/labels")]
+        [ResponseType(typeof(Label))]
         public IHttpActionResult GetLabels()
         {
             return Ok(db.Labels);
