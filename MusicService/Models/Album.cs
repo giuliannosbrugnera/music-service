@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MusicService.Models
 {
@@ -26,6 +27,8 @@ namespace MusicService.Models
         /// Foreign key for Band.
         /// </summary>
         [ForeignKey("Band")]
+        [JsonIgnore]
+
         public int BandRefId { get; set; }
         
         /// <summary>
