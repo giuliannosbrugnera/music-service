@@ -2,7 +2,7 @@
 > Web Service for the Music database
 
 ## Database design
-![Database design](http://i.imgur.com/Aqmo0q6.png "Database design")
+![Database design](http://i.imgur.com/uOFNjOP.png "Database design")
 
 ## Technologies
 
