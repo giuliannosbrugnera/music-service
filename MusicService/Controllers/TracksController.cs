@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using MusicService.Models;
+using System;
 
 namespace MusicService.Controllers
 {
@@ -18,7 +19,7 @@ namespace MusicService.Controllers
         private MusicServiceContext _context = new MusicServiceContext();
 
         /// <summary>
-        /// Return all Tracks.
+        /// Find all tracks
         /// </summary>
         [HttpGet]
         [Route("~/api/tracks")]
@@ -34,9 +35,9 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Return a specific Track.
+        /// Find track by ID
         /// </summary>
-        /// <param name="trackId">Track identifier.</param>
+        /// <param name="trackId">Track identifier</param>
         [HttpGet]
         [Route("{trackId}")]
         [ResponseType(typeof(Track))]
@@ -56,10 +57,42 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Update an entire Track.
+        /// Find track by track name
         /// </summary>
-        /// <param name="trackId">Track identifier.</param>
-        /// <param name="track">New object to be inserted.</param>
+        /// <param name="trackName">Track name</param>
+        [HttpGet]
+        [Route("search/{trackName}")]
+        [ResponseType(typeof(Track))]
+        public async Task<IHttpActionResult> GetTrackByName(string trackName)
+        {
+            // Get all tracks.
+            var tracks = _context.Tracks
+                                .Include(a => a.Album)
+                                .Include(a => a.Album.Band)
+                                .Include(a => a.Album.Band.Label);
+
+
+            if (!String.IsNullOrEmpty(trackName))
+            {
+                // Select the tracks based on the trackName parameter.
+                tracks = tracks.Where(t => t.Name.ToLower().Contains(trackName.ToLower()));
+            }
+
+            if (tracks == null)
+            {
+                return NotFound();
+            }
+
+            await tracks.ToListAsync();
+
+            return Ok(tracks);
+        }
+
+        /// <summary>
+        /// Update an entire track
+        /// </summary>
+        /// <param name="trackId">Track identifier</param>
+        /// <param name="track">New object to be inserted</param>
         [HttpPut]
         [Route("{trackId}")]
         [ResponseType(typeof(void))]
@@ -97,9 +130,9 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Create a new Track.
+        /// Create a new track
         /// </summary>
-        /// <param name="track">Object to be created.</param>
+        /// <param name="track">Object to be created</param>
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Track))]
@@ -117,9 +150,9 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Delete a specific Track.
+        /// Delete a specific track
         /// </summary>
-        /// <param name="trackId">Track identifier.</param>
+        /// <param name="trackId">Track identifier</param>
         [HttpDelete]
         [Route("{trackId}")]
         [ResponseType(typeof(Track))]

@@ -18,7 +18,7 @@ namespace MusicService.Controllers
         private MusicServiceContext _context = new MusicServiceContext();
 
         /// <summary>
-        /// Return all Record Labels.
+        /// Find all record labels
         /// </summary>
         [HttpGet]
         [Route("~/api/labels")]
@@ -29,13 +29,12 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Return a specific Record Label.
+        /// Find record label by ID
         /// </summary>
-        /// <param name="labelId">Record Label identifier.</param>
+        /// <param name="labelId">Record Label identifier</param>
         [HttpGet]
         [Route("{labelId}")]
         [ResponseType(typeof(Label))]
-        // Return a specific Record Label based on {labelId}
         public async Task<IHttpActionResult> GetLabel(int labelId)
         {
             Label label = await _context.Labels.FindAsync(labelId);
@@ -48,10 +47,10 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Update an entire Record Label.
+        /// Update a record label
         /// </summary>
-        /// <param name="labelId">Record Label identifier.</param>
-        /// <param name="label">New object to be inserted.</param>
+        /// <param name="labelId">Record Label identifier</param>
+        /// <param name="label">New object to be inserted</param>
         [HttpPut]
         [Route("{labelId}")]
         [ResponseType(typeof(void))]
@@ -89,9 +88,9 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Create a Record Label.
+        /// Create a record label
         /// </summary>
-        /// <param name="label">Object to be created.</param>
+        /// <param name="label">Object to be created</param>
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Label))]
@@ -109,9 +108,9 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Delete a Record Label.
+        /// Delete a record label
         /// </summary>
-        /// <param name="labelId">Record Label identifier.</param>
+        /// <param name="labelId">Record Label identifier</param>
         [HttpDelete]
         [Route("{labelId}")]
         [ResponseType(typeof(Label))]

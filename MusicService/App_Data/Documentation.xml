@@ -498,35 +498,33 @@
         </member>
         <member name="M:MusicService.Controllers.AlbumsController.GetAlbums">
             <summary>
-            Return all Albums.
+            Find all albums
             </summary>
         </member>
         <member name="M:MusicService.Controllers.AlbumsController.GetAlbum(System.Int32)">
             <summary>
-            Return a specific Album.
+            Find album by ID
             </summary>
-            <param name="albumId">Band identifier.</param>
+            <param name="albumId">Band identifier</param>
         </member>
         <member name="M:MusicService.Controllers.AlbumsController.PutAlbum(System.Int32,MusicService.Models.Album)">
             <summary>
-            Update an entire Album.
+            Update an album
             </summary>
-            <param name="albumId">Album identifier.</param>
-            <param name="album">New object to be inserted.</param>
+            <param name="albumId">Album identifier</param>
+            <param name="album">New object to be inserted</param>
         </member>
         <member name="M:MusicService.Controllers.AlbumsController.PostAlbum(MusicService.Models.Album)">
             <summary>
-            Create a new Album.
+            Create a new album
             </summary>
-            <param name="album">Object to be created.</param>
-            <returns></returns>
+            <param name="album">Object to be created</param>
         </member>
         <member name="M:MusicService.Controllers.AlbumsController.DeleteAlbum(System.Int32)">
             <summary>
-             Delete an Album.
+             Deletes an album
             </summary>
-            <param name="albumId">Album identifier.</param>
-            <returns>Deleted object.</returns>
+            <param name="albumId">Album identifier</param>
         </member>
         <member name="M:MusicService.Controllers.AlbumsController.Dispose(System.Boolean)">
             <summary>
@@ -541,33 +539,33 @@
         </member>
         <member name="M:MusicService.Controllers.BandsController.GetBands">
             <summary>
-            Return all Bands.
+            Find all bands
             </summary>
         </member>
         <member name="M:MusicService.Controllers.BandsController.GetBand(System.Int32)">
             <summary>
-            Return a specific Band.
+            Find band by ID
             </summary>
-            <param name="bandId">Band identifier.</param>
+            <param name="bandId">Band identifier</param>
         </member>
         <member name="M:MusicService.Controllers.BandsController.PutBand(System.Int32,MusicService.Models.Band)">
             <summary>
-            Update an entire Band.
+            Update a band
             </summary>
-            <param name="bandId">Band identifier.</param>
-            <param name="band">New object to be inserted.</param>
+            <param name="bandId">Band identifier</param>
+            <param name="band">New object to be inserted</param>
         </member>
         <member name="M:MusicService.Controllers.BandsController.PostBand(MusicService.Models.Band)">
             <summary>
-            Create a new Band.
+            Create a new band
             </summary>
-            <param name="band">Object to be created.</param>
+            <param name="band">Object to be created</param>
         </member>
         <member name="M:MusicService.Controllers.BandsController.DeleteBand(System.Int32)">
             <summary>
-            Delete a Band.
+            Deletes a band
             </summary>
-            <param name="bandId">Band identifier.</param>
+            <param name="bandId">Band identifier</param>
         </member>
         <member name="M:MusicService.Controllers.BandsController.Dispose(System.Boolean)">
             <summary>
@@ -593,33 +591,33 @@
         </member>
         <member name="M:MusicService.Controllers.LabelsController.GetLabels">
             <summary>
-            Return all Record Labels.
+            Find all record labels
             </summary>
         </member>
         <member name="M:MusicService.Controllers.LabelsController.GetLabel(System.Int32)">
             <summary>
-            Return a specific Record Label.
+            Find record label by ID
             </summary>
-            <param name="labelId">Record Label identifier.</param>
+            <param name="labelId">Record Label identifier</param>
         </member>
         <member name="M:MusicService.Controllers.LabelsController.PutLabel(System.Int32,MusicService.Models.Label)">
             <summary>
-            Update an entire Record Label.
+            Update a record label
             </summary>
-            <param name="labelId">Record Label identifier.</param>
-            <param name="label">New object to be inserted.</param>
+            <param name="labelId">Record Label identifier</param>
+            <param name="label">New object to be inserted</param>
         </member>
         <member name="M:MusicService.Controllers.LabelsController.PostLabel(MusicService.Models.Label)">
             <summary>
-            Create a Record Label.
+            Create a record label
             </summary>
-            <param name="label">Object to be created.</param>
+            <param name="label">Object to be created</param>
         </member>
         <member name="M:MusicService.Controllers.LabelsController.DeleteLabel(System.Int32)">
             <summary>
-            Delete a Record Label.
+            Delete a record label
             </summary>
-            <param name="labelId">Record Label identifier.</param>
+            <param name="labelId">Record Label identifier</param>
         </member>
         <member name="M:MusicService.Controllers.LabelsController.Dispose(System.Boolean)">
             <summary>
@@ -634,33 +632,39 @@
         </member>
         <member name="M:MusicService.Controllers.TracksController.GetTracks">
             <summary>
-            Return all Tracks.
+            Find all tracks
             </summary>
         </member>
         <member name="M:MusicService.Controllers.TracksController.GetTrack(System.Int32)">
             <summary>
-            Return a specific Track.
+            Find track by ID
             </summary>
-            <param name="trackId">Track identifier.</param>
+            <param name="trackId">Track identifier</param>
+        </member>
+        <member name="M:MusicService.Controllers.TracksController.GetTrackByName(System.String)">
+            <summary>
+            Find track by track name
+            </summary>
+            <param name="trackName">Track name</param>
         </member>
         <member name="M:MusicService.Controllers.TracksController.PutTrack(System.Int32,MusicService.Models.Track)">
             <summary>
-            Update an entire Track.
+            Update an entire track
             </summary>
-            <param name="trackId">Track identifier.</param>
-            <param name="track">New object to be inserted.</param>
+            <param name="trackId">Track identifier</param>
+            <param name="track">New object to be inserted</param>
         </member>
         <member name="M:MusicService.Controllers.TracksController.PostTrack(MusicService.Models.Track)">
             <summary>
-            Create a new Track.
+            Create a new track
             </summary>
-            <param name="track">Object to be created.</param>
+            <param name="track">Object to be created</param>
         </member>
         <member name="M:MusicService.Controllers.TracksController.DeleteTrack(System.Int32)">
             <summary>
-            Delete a specific Track.
+            Delete a specific track
             </summary>
-            <param name="trackId">Track identifier.</param>
+            <param name="trackId">Track identifier</param>
         </member>
         <member name="M:MusicService.Controllers.TracksController.Dispose(System.Boolean)">
             <summary>

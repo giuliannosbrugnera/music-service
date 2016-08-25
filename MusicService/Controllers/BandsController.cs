@@ -18,7 +18,7 @@ namespace MusicService.Controllers
         private MusicServiceContext _context = new MusicServiceContext();
 
         /// <summary>
-        /// Return all Bands.
+        /// Find all bands
         /// </summary>
         [HttpGet]
         [Route("~/api/bands")]
@@ -30,9 +30,9 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Return a specific Band.
+        /// Find band by ID
         /// </summary>
-        /// <param name="bandId">Band identifier.</param>
+        /// <param name="bandId">Band identifier</param>
         [HttpGet]
         [Route("{bandId}")]
         [ResponseType(typeof(Band))]
@@ -50,10 +50,10 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Update an entire Band.
+        /// Update a band
         /// </summary>
-        /// <param name="bandId">Band identifier.</param>
-        /// <param name="band">New object to be inserted.</param>
+        /// <param name="bandId">Band identifier</param>
+        /// <param name="band">New object to be inserted</param>
         [HttpPut]
         [Route("{bandId}")]
         [ResponseType(typeof(void))]
@@ -91,9 +91,9 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Create a new Band.
+        /// Create a new band
         /// </summary>
-        /// <param name="band">Object to be created.</param>
+        /// <param name="band">Object to be created</param>
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Band))]
@@ -111,9 +111,9 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Delete a Band.
+        /// Deletes a band
         /// </summary>
-        /// <param name="bandId">Band identifier.</param>
+        /// <param name="bandId">Band identifier</param>
         [HttpDelete]
         [Route("{bandId}")]
         [ResponseType(typeof(Band))]

@@ -18,7 +18,7 @@ namespace MusicService.Controllers
         private MusicServiceContext _context = new MusicServiceContext();
 
         /// <summary>
-        /// Return all Albums.
+        /// Find all albums
         /// </summary>
         [HttpGet]
         [Route("~/api/albums")]
@@ -33,13 +33,12 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Return a specific Album.
+        /// Find album by ID
         /// </summary>
-        /// <param name="albumId">Band identifier.</param>
+        /// <param name="albumId">Band identifier</param>
         [HttpGet]
         [Route("{albumId}")]
         [ResponseType(typeof(Album))]
-        // Return a specific Album based on {albumId}
         public async Task<IHttpActionResult> GetAlbum(int albumId)
         {
             Album album = await _context.Albums
@@ -55,14 +54,13 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Update an entire Album.
+        /// Update an album
         /// </summary>
-        /// <param name="albumId">Album identifier.</param>
-        /// <param name="album">New object to be inserted.</param>
+        /// <param name="albumId">Album identifier</param>
+        /// <param name="album">New object to be inserted</param>
         [HttpPut]
         [Route("{albumId}")]
         [ResponseType(typeof(void))]
-        // Update an entire Album based on {albumId}
         public async Task<IHttpActionResult> PutAlbum(int albumId, Album album)
         {
             if (!ModelState.IsValid)
@@ -97,10 +95,9 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        /// Create a new Album.
+        /// Create a new album
         /// </summary>
-        /// <param name="album">Object to be created.</param>
-        /// <returns></returns>
+        /// <param name="album">Object to be created</param>
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Album))]
@@ -118,10 +115,9 @@ namespace MusicService.Controllers
         }
 
         /// <summary>
-        ///  Delete an Album.
+        ///  Deletes an album
         /// </summary>
-        /// <param name="albumId">Album identifier.</param>
-        /// <returns>Deleted object.</returns>
+        /// <param name="albumId">Album identifier</param>
         [HttpDelete]
         [Route("{albumId}")]
         [ResponseType(typeof(Album))]
