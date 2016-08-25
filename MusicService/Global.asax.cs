@@ -9,8 +9,14 @@ using System.Web.Routing;
 
 namespace MusicService
 {
+    /// <summary>
+    /// Starts the application.
+    /// </summary>
     public class WebApiApplication : System.Web.HttpApplication
     {
+        /// <summary>
+        /// Method to start the application.
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

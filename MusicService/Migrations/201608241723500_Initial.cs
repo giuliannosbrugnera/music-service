@@ -1,10 +1,15 @@
 namespace MusicService.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
+    /// <summary>
+    /// Generate the snapshot of the database.
+    /// </summary>
     public partial class Initial : DbMigration
     {
+        /// <summary>
+        /// Method to create the tables in the database.
+        /// </summary>
         public override void Up()
         {
             CreateTable(
@@ -61,6 +66,9 @@ namespace MusicService.Migrations
             
         }
         
+        /// <summary>
+        /// Method to delete the tables in the database.
+        /// </summary>
         public override void Down()
         {
             DropForeignKey("dbo.Tracks", "AlbumRefId", "dbo.Albums");

@@ -15,7 +15,7 @@ namespace MusicService.Controllers
     [RoutePrefix("api/band")]
     public class BandsController : ApiController
     {
-        private MusicServiceContext db = new MusicServiceContext();
+        private MusicServiceContext _context = new MusicServiceContext();
 
         /// <summary>
         /// Return all Bands.
@@ -25,7 +25,8 @@ namespace MusicService.Controllers
         [ResponseType(typeof(Band))]
         public IHttpActionResult GetBands()
         {
-            return Ok(db.Bands);
+            var bands = _context.Bands.Include(b => b.Label);
+            return Ok(bands);
         }
 
         /// <summary>
@@ -37,7 +38,9 @@ namespace MusicService.Controllers
         [ResponseType(typeof(Band))]
         public async Task<IHttpActionResult> GetBand(int bandId)
         {
-            Band band = await db.Bands.FindAsync(bandId);
+            Band band = await _context.Bands
+                                    .Include(b => b.Label)
+                                    .SingleOrDefaultAsync(c => c.BandId == bandId);
             if (band == null)
             {
                 return NotFound();
@@ -66,11 +69,11 @@ namespace MusicService.Controllers
                 return BadRequest();
             }
 
-            db.Entry(band).State = EntityState.Modified;
+            _context.Entry(band).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -101,8 +104,8 @@ namespace MusicService.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Bands.Add(band);
-            await db.SaveChangesAsync();
+            _context.Bands.Add(band);
+            await _context.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = band.BandId }, band);
         }
@@ -116,30 +119,34 @@ namespace MusicService.Controllers
         [ResponseType(typeof(Band))]
         public async Task<IHttpActionResult> DeleteBand(int bandId)
         {
-            Band band = await db.Bands.FindAsync(bandId);
+            Band band = await _context.Bands.FindAsync(bandId);
             if (band == null)
             {
                 return NotFound();
             }
 
-            db.Bands.Remove(band);
-            await db.SaveChangesAsync();
+            _context.Bands.Remove(band);
+            await _context.SaveChangesAsync();
 
             return Ok(band);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool BandExists(int id)
         {
-            return db.Bands.Count(e => e.BandId == id) > 0;
+            return _context.Bands.Count(e => e.BandId == id) > 0;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace MusicService.Controllers
     [RoutePrefix("api/album")]
     public class AlbumsController : ApiController
     {
-        private MusicServiceContext db = new MusicServiceContext();
+        private MusicServiceContext _context = new MusicServiceContext();
 
         /// <summary>
         /// Return all Albums.
@@ -25,11 +25,15 @@ namespace MusicService.Controllers
         [ResponseType(typeof(Album))]
         public IHttpActionResult GetAlbums()
         {
-            return Ok(db.Albums);
+            // Include the Band and Record Label.
+            var albums = _context.Albums
+                                .Include(b => b.Band)
+                                .Include(b => b.Band.Label);
+            return Ok(albums);
         }
 
         /// <summary>
-        /// Return a specific Band.
+        /// Return a specific Album.
         /// </summary>
         /// <param name="albumId">Band identifier.</param>
         [HttpGet]
@@ -38,7 +42,10 @@ namespace MusicService.Controllers
         // Return a specific Album based on {albumId}
         public async Task<IHttpActionResult> GetAlbum(int albumId)
         {
-            Album album = await db.Albums.FindAsync(albumId);
+            Album album = await _context.Albums
+                                .Include(b => b.Band)
+                                .Include(b => b.Band.Label)
+                                .SingleOrDefaultAsync(a => a.AlbumId == albumId);
             if (album == null)
             {
                 return NotFound();
@@ -68,11 +75,11 @@ namespace MusicService.Controllers
                 return BadRequest();
             }
 
-            db.Entry(album).State = EntityState.Modified;
+            _context.Entry(album).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -104,8 +111,8 @@ namespace MusicService.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Albums.Add(album);
-            await db.SaveChangesAsync();
+            _context.Albums.Add(album);
+            await _context.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = album.AlbumId }, album);
         }
@@ -120,30 +127,34 @@ namespace MusicService.Controllers
         [ResponseType(typeof(Album))]
         public async Task<IHttpActionResult> DeleteAlbum(int albumId)
         {
-            Album album = await db.Albums.FindAsync(albumId);
+            Album album = await _context.Albums.FindAsync(albumId);
             if (album == null)
             {
                 return NotFound();
             }
 
-            db.Albums.Remove(album);
-            await db.SaveChangesAsync();
+            _context.Albums.Remove(album);
+            await _context.SaveChangesAsync();
 
             return Ok(album);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool AlbumExists(int id)
         {
-            return db.Albums.Count(e => e.AlbumId == id) > 0;
+            return _context.Albums.Count(e => e.AlbumId == id) > 0;
         }
     }
 }

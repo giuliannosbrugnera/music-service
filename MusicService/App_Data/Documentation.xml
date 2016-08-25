@@ -493,7 +493,7 @@
         </member>
         <member name="M:MusicService.Controllers.AlbumsController.GetAlbum(System.Int32)">
             <summary>
-            Return a specific Band.
+            Return a specific Album.
             </summary>
             <param name="albumId">Band identifier.</param>
         </member>
@@ -517,6 +517,12 @@
             </summary>
             <param name="albumId">Album identifier.</param>
             <returns>Deleted object.</returns>
+        </member>
+        <member name="M:MusicService.Controllers.AlbumsController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         </member>
         <member name="T:MusicService.Controllers.BandsController">
             <summary>
@@ -553,6 +559,23 @@
             </summary>
             <param name="bandId">Band identifier.</param>
         </member>
+        <member name="M:MusicService.Controllers.BandsController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="T:MusicService.Controllers.HomeController">
+            <summary>
+            Home Controller, added by default when the project was creted.
+            </summary>
+        </member>
+        <member name="M:MusicService.Controllers.HomeController.Index">
+            <summary>
+            Index method.
+            </summary>
+            <returns>View to the default page.</returns>
+        </member>
         <member name="T:MusicService.Controllers.LabelsController">
             <summary>
             Record Labels controller.
@@ -588,6 +611,12 @@
             </summary>
             <param name="labelId">Record Label identifier.</param>
         </member>
+        <member name="M:MusicService.Controllers.LabelsController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
         <member name="T:MusicService.Controllers.TracksController">
             <summary>
             Tracks controller.
@@ -622,6 +651,192 @@
             Delete a specific Track.
             </summary>
             <param name="trackId">Track identifier.</param>
+        </member>
+        <member name="M:MusicService.Controllers.TracksController.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="T:MusicService.WebApiApplication">
+            <summary>
+            Starts the application.
+            </summary>
+        </member>
+        <member name="M:MusicService.WebApiApplication.Application_Start">
+            <summary>
+            Method to start the application.
+            </summary>
+        </member>
+        <member name="T:MusicService.Migrations.Initial">
+            <summary>
+            Generate the snapshot of the database.
+            </summary>
+        </member>
+        <member name="M:MusicService.Migrations.Initial.Up">
+            <summary>
+            Method to create the tables in the database.
+            </summary>
+        </member>
+        <member name="M:MusicService.Migrations.Initial.Down">
+            <summary>
+            Method to delete the tables in the database.
+            </summary>
+        </member>
+        <member name="T:MusicService.Models.Album">
+            <summary>
+            Represent an Album. Associated with a Band. It has 1 to many Tracks.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Album.AlbumId">
+            <summary>
+            Album ID.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Album.Name">
+            <summary>
+            The name given to an Album.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Album.ReleaseYear">
+            <summary>
+            The year the Album was released.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Album.BandRefId">
+            <summary>
+            Foreign key for Band.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Album.Band">
+            <summary>
+            Navigation property.
+            </summary>
+        </member>
+        <member name="T:MusicService.Models.Band">
+            <summary>
+            Represent a Band. Associated with a Record Label. It has 0 to many Albums.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Band.BandId">
+            <summary>
+            Band ID.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Band.Name">
+            <summary>
+            Name given to a Band.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Band.Genre">
+            <summary>
+            Genre of a Band.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Band.Country">
+            <summary>
+            Country where the Band was created.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Band.LabelRefId">
+            <summary>
+            Foreign key for Label.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Band.Label">
+            <summary>
+            Navigation property.
+            </summary>
+        </member>
+        <member name="T:MusicService.Models.Label">
+            <summary>
+            Represent a Record Label. It has 0 to many Bands.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Label.LabelId">
+            <summary>
+            Label ID.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Label.Name">
+            <summary>
+            Name given to a Label.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Label.FoundationYear">
+            <summary>
+            Year that the Label was founded.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Label.FounderName">
+            <summary>
+            Name of the Label founder.
+            </summary>
+        </member>
+        <member name="T:MusicService.Models.MusicServiceContext">
+            <summary>
+            Database context.
+            </summary>
+        </member>
+        <member name="M:MusicService.Models.MusicServiceContext.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.MusicServiceContext.Labels">
+            <summary>
+            Label entity.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.MusicServiceContext.Bands">
+            <summary>
+            Band entity.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.MusicServiceContext.Albums">
+            <summary>
+            Album entity.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.MusicServiceContext.Tracks">
+            <summary>
+            Track entity.
+            </summary>
+        </member>
+        <member name="T:MusicService.Models.Track">
+            <summary>
+            Represent a Track. Associated with an Album.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Track.TrackId">
+            <summary>
+            Track Id.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Track.Name">
+            <summary>
+            Name given to a Track.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Track.Lenght">
+            <summary>
+            Track length in the pattern "minutes":"seconds".
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Track.Number">
+            <summary>
+            Track number in the Album.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Track.AlbumRefId">
+            <summary>
+            Foreign key for Album.
+            </summary>
+        </member>
+        <member name="P:MusicService.Models.Track.Album">
+            <summary>
+            Navigation property.
+            </summary>
         </member>
     </members>
 </doc>

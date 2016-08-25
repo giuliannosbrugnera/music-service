@@ -15,7 +15,7 @@ namespace MusicService.Controllers
     [RoutePrefix("api/track")]
     public class TracksController : ApiController
     {
-        private MusicServiceContext db = new MusicServiceContext();
+        private MusicServiceContext _context = new MusicServiceContext();
 
         /// <summary>
         /// Return all Tracks.
@@ -25,7 +25,12 @@ namespace MusicService.Controllers
         [ResponseType(typeof(Track))]
         public IHttpActionResult GetTracks()
         {
-            return Ok(db.Tracks);
+            // Include the associated Album, Band and Record Label.
+            var tracks = _context.Tracks
+                                .Include(a => a.Album)
+                                .Include(a => a.Album.Band)
+                                .Include(a => a.Album.Band.Label);
+            return Ok(tracks);
         }
 
         /// <summary>
@@ -37,7 +42,11 @@ namespace MusicService.Controllers
         [ResponseType(typeof(Track))]
         public async Task<IHttpActionResult> GetTrack(int trackId)
         {
-            Track track = await db.Tracks.FindAsync(trackId);
+            Track track = await _context.Tracks
+                                    .Include(a => a.Album)
+                                    .Include(a => a.Album.Band)
+                                    .Include(a => a.Album.Band.Label)
+                                    .SingleOrDefaultAsync(t => t.TrackId == trackId);
             if (track == null)
             {
                 return NotFound();
@@ -66,11 +75,11 @@ namespace MusicService.Controllers
                 return BadRequest();
             }
 
-            db.Entry(track).State = EntityState.Modified;
+            _context.Entry(track).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -101,8 +110,8 @@ namespace MusicService.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Tracks.Add(track);
-            await db.SaveChangesAsync();
+            _context.Tracks.Add(track);
+            await _context.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = track.TrackId }, track);
         }
@@ -116,30 +125,34 @@ namespace MusicService.Controllers
         [ResponseType(typeof(Track))]
         public async Task<IHttpActionResult> DeleteTrack(int trackId)
         {
-            Track track = await db.Tracks.FindAsync(trackId);
+            Track track = await _context.Tracks.FindAsync(trackId);
             if (track == null)
             {
                 return NotFound();
             }
 
-            db.Tracks.Remove(track);
-            await db.SaveChangesAsync();
+            _context.Tracks.Remove(track);
+            await _context.SaveChangesAsync();
 
             return Ok(track);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool TrackExists(int id)
         {
-            return db.Tracks.Count(e => e.TrackId == id) > 0;
+            return _context.Tracks.Count(e => e.TrackId == id) > 0;
         }
     }
 }

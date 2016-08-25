@@ -15,7 +15,7 @@ namespace MusicService.Controllers
     [RoutePrefix("api/label")]
     public class LabelsController : ApiController
     {
-        private MusicServiceContext db = new MusicServiceContext();
+        private MusicServiceContext _context = new MusicServiceContext();
 
         /// <summary>
         /// Return all Record Labels.
@@ -25,7 +25,7 @@ namespace MusicService.Controllers
         [ResponseType(typeof(Label))]
         public IHttpActionResult GetLabels()
         {
-            return Ok(db.Labels);
+            return Ok(_context.Labels);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace MusicService.Controllers
         // Return a specific Record Label based on {labelId}
         public async Task<IHttpActionResult> GetLabel(int labelId)
         {
-            Label label = await db.Labels.FindAsync(labelId);
+            Label label = await _context.Labels.FindAsync(labelId);
             if (label == null)
             {
                 return NotFound();
@@ -67,11 +67,11 @@ namespace MusicService.Controllers
                 return BadRequest();
             }
 
-            db.Entry(label).State = EntityState.Modified;
+            _context.Entry(label).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -102,8 +102,8 @@ namespace MusicService.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Labels.Add(label);
-            await db.SaveChangesAsync();
+            _context.Labels.Add(label);
+            await _context.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = label.LabelId }, label);
         }
@@ -117,30 +117,34 @@ namespace MusicService.Controllers
         [ResponseType(typeof(Label))]
         public async Task<IHttpActionResult> DeleteLabel(int labelId)
         {
-            Label label = await db.Labels.FindAsync(labelId);
+            Label label = await _context.Labels.FindAsync(labelId);
             if (label == null)
             {
                 return NotFound();
             }
 
-            db.Labels.Remove(label);
-            await db.SaveChangesAsync();
+            _context.Labels.Remove(label);
+            await _context.SaveChangesAsync();
 
             return Ok(label);
         }
 
+        /// <summary>
+        /// Releases the unmanaged resources that are used by the object and, optionally, releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool LabelExists(int id)
         {
-            return db.Labels.Count(e => e.LabelId == id) > 0;
+            return _context.Labels.Count(e => e.LabelId == id) > 0;
         }
     }
 }

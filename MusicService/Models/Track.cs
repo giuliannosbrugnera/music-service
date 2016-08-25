@@ -2,17 +2,40 @@
 
 namespace MusicService.Models
 {
-    // Represent a Track. Associated with an Album
+    /// <summary>
+    /// Represent a Track. Associated with an Album.
+    /// </summary>
     public class Track
     {
+        /// <summary>
+        /// Track Id.
+        /// </summary>
         public int TrackId { get; set; }
+
+        /// <summary>
+        /// Name given to a Track.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Track length in the pattern "minutes":"seconds".
+        /// </summary>
         public string Lenght { get; set; }
+
+        /// <summary>
+        /// Track number in the Album.
+        /// </summary>
         public int Number { get; set; }
-        // Foreign key for Album
+
+        /// <summary>
+        /// Foreign key for Album.
+        /// </summary>
         [ForeignKey("Album")]
         public int AlbumRefId { get; set; }
-        // Navigation property
+        
+        /// <summary>
+        /// Navigation property.
+        /// </summary>
         public Album Album { get; set; }
     }
 }

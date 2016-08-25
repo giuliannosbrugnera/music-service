@@ -1,30 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace MusicService.Models
 {
+    /// <summary>
+    /// Database context.
+    /// </summary>
     public class MusicServiceContext : DbContext
     {
-        // You can add custom code to this file. Changes will not be overwritten.
-        // 
-        // If you want Entity Framework to drop and regenerate your database
-        // automatically whenever you change your model schema, please use data migrations.
-        // For more information refer to the documentation:
-        // http://msdn.microsoft.com/en-us/data/jj591621.aspx
-    
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+                    
         public MusicServiceContext() : base("name=MusicServiceContext")
         {
         }
 
+        /// <summary>
+        /// Label entity.
+        /// </summary>
         public System.Data.Entity.DbSet<MusicService.Models.Label> Labels { get; set; }
 
+        /// <summary>
+        /// Band entity.
+        /// </summary>
         public System.Data.Entity.DbSet<MusicService.Models.Band> Bands { get; set; }
 
+        /// <summary>
+        /// Album entity.
+        /// </summary>
         public System.Data.Entity.DbSet<MusicService.Models.Album> Albums { get; set; }
 
+        /// <summary>
+        /// Track entity.
+        /// </summary>
         public System.Data.Entity.DbSet<MusicService.Models.Track> Tracks { get; set; }
     }
 }
