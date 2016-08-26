@@ -36,7 +36,7 @@ namespace MusicService.Migrations
                 new Band() { BandId = 12, Name = "F.A.C.E.", Genre = "Progressive Metal", Country = "Bulgaria", LabelRefId = 3 },
                 new Band() { BandId = 13, Name = "Goldfinger", Genre = "Punk Rock", Country = "United States", LabelRefId = 3 },
                 new Band() { BandId = 14, Name = "Galen", Genre = "Heavy Metal", Country = "Germany", LabelRefId = 3 },
-                new Band() { BandId = 15, Name = "Hammerfall", Genre = "Heavy metal", Country = "Sweden", LabelRefId = 3 }
+                new Band() { BandId = 15, Name = "Hammerfall", Genre = "Heavy Metal", Country = "Sweden", LabelRefId = 3 }
             });
 
             context.Albums.AddOrUpdate(new Album[] {
@@ -55,7 +55,7 @@ namespace MusicService.Migrations
                 new Album() { AlbumId = 13, Name = "Stomping Ground", ReleaseYear = 2000, BandRefId = 13 },
                 new Album() { AlbumId = 14, Name = "The Blind lead the Blind", ReleaseYear = 1993, BandRefId = 14 },
                 new Album() { AlbumId = 15, Name = "Chapter V: Unbent, Unbowed, Unbroken", ReleaseYear = 2005, BandRefId = 15 },
-                new Album() { AlbumId = 16, Name = "Waking the Fallen", ReleaseYear = 2003, BandRefId = 1 }
+                new Album() { AlbumId = 16, Name = "Glory to the Brave", ReleaseYear = 1997, BandRefId = 15 }
             });
 
             context.Tracks.AddOrUpdate(new Track[] {
@@ -235,19 +235,18 @@ namespace MusicService.Migrations
                 new Track() { TrackId = 158, Name = "Imperial", Lenght = "7:10", Number = 8, AlbumRefId = 15 },
                 new Track() { TrackId = 159, Name = "Take the Black", Lenght = "9:14", Number = 9, AlbumRefId = 15 },
                 new Track() { TrackId = 161, Name = "Knights of the 21st Century", Lenght = "6:47", Number = 10, AlbumRefId = 15 },
-                // Waking the Fallen
-                new Track() { TrackId = 162, Name = "Waking the Fallen", Lenght = "5:42", Number = 1, AlbumRefId = 16 },
-                new Track() { TrackId = 163, Name = "Unholy Confessions", Lenght = "5:00", Number = 2, AlbumRefId = 16 },
-                new Track() { TrackId = 164, Name = "Chapter Four", Lenght = "6:34", Number = 3, AlbumRefId = 16 },
-                new Track() { TrackId = 165, Name = "Remenissions", Lenght = "5:13", Number = 4, AlbumRefId = 16 },
-                new Track() { TrackId = 166, Name = "Desecrate Through Reverence", Lenght = "5:53", Number = 5, AlbumRefId = 16 },
-                new Track() { TrackId = 167, Name = "Eternal Rest", Lenght = "5:32", Number = 6, AlbumRefId = 16 },
-                new Track() { TrackId = 168, Name = "Second Heartbeat", Lenght = "7:01", Number = 7, AlbumRefId = 16 },
-                new Track() { TrackId = 169, Name = "Radiant Eclipse", Lenght = "7:10", Number = 8, AlbumRefId = 16 },
-                new Track() { TrackId = 170, Name = "I Won't See You Tonight (Part 1)", Lenght = "9:14", Number = 9, AlbumRefId = 16 },
-                new Track() { TrackId = 171, Name = "I Won't See You Tonight (Part 2)", Lenght = "6:47", Number = 10, AlbumRefId = 16 },
-                new Track() { TrackId = 172, Name = "Clairvoyant Disease", Lenght = "8:48", Number = 11, AlbumRefId = 16 },
-                new Track() { TrackId = 173, Name = "And All Things Will End", Lenght = "8:48", Number = 12, AlbumRefId = 16 }
+                // Glory to the Brave
+                new Track() { TrackId = 162, Name = "The Dragon Lies Bleeding", Lenght = "5:42", Number = 1, AlbumRefId = 16 },
+                new Track() { TrackId = 163, Name = "The Metal Age", Lenght = "5:00", Number = 2, AlbumRefId = 16 },
+                new Track() { TrackId = 164, Name = "I Believe", Lenght = "6:34", Number = 3, AlbumRefId = 16 },
+                new Track() { TrackId = 165, Name = "Child of the Damned", Lenght = "5:13", Number = 4, AlbumRefId = 16 },
+                new Track() { TrackId = 166, Name = "Steel Meets Steel", Lenght = "5:53", Number = 5, AlbumRefId = 16 },
+                new Track() { TrackId = 167, Name = "Stone Cold", Lenght = "5:32", Number = 6, AlbumRefId = 16 },
+                new Track() { TrackId = 168, Name = "Unchained", Lenght = "7:01", Number = 7, AlbumRefId = 16 },
+                new Track() { TrackId = 169, Name = "Glory to the Brave", Lenght = "7:10", Number = 8, AlbumRefId = 16 },
+                new Track() { TrackId = 170, Name = "Ravenlord", Lenght = "9:14", Number = 9, AlbumRefId = 16 },
+                new Track() { TrackId = 171, Name = "Hammerfall", Lenght = "6:47", Number = 10, AlbumRefId = 16 },
+                new Track() { TrackId = 172, Name = "Glory to the Brave", Lenght = "8:48", Number = 11, AlbumRefId = 16 }
             });
         }
     }
