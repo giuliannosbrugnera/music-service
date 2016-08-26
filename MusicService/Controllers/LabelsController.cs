@@ -12,7 +12,7 @@ namespace MusicService.Controllers
     /// <summary>
     /// Record Labels controller.
     /// </summary>
-    [RoutePrefix("api/label")]
+    [RoutePrefix("api/labels")]
     public class LabelsController : ApiController
     {
         private MusicServiceContext _context = new MusicServiceContext();
@@ -21,7 +21,7 @@ namespace MusicService.Controllers
         /// Find all record labels
         /// </summary>
         [HttpGet]
-        [Route("~/api/labels")]
+        [Route("")]
         [ResponseType(typeof(Label))]
         public IHttpActionResult GetLabels()
         {

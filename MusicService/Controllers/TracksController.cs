@@ -13,7 +13,7 @@ namespace MusicService.Controllers
     /// <summary>
     /// Tracks controller.
     /// </summary>
-    [RoutePrefix("api/track")]
+    [RoutePrefix("api/tracks")]
     public class TracksController : ApiController
     {
         private MusicServiceContext _context = new MusicServiceContext();
@@ -22,7 +22,7 @@ namespace MusicService.Controllers
         /// Find all tracks
         /// </summary>
         [HttpGet]
-        [Route("~/api/tracks")]
+        [Route("")]
         [ResponseType(typeof(Track))]
         public IHttpActionResult GetTracks()
         {

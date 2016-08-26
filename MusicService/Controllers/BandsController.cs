@@ -12,7 +12,7 @@ namespace MusicService.Controllers
     /// <summary>
     /// Bands controller.
     /// </summary>
-    [RoutePrefix("api/band")]
+    [RoutePrefix("api/bands")]
     public class BandsController : ApiController
     {
         private MusicServiceContext _context = new MusicServiceContext();
@@ -21,7 +21,7 @@ namespace MusicService.Controllers
         /// Find all bands
         /// </summary>
         [HttpGet]
-        [Route("~/api/bands")]
+        [Route("")]
         [ResponseType(typeof(Band))]
         public IHttpActionResult GetBands()
         {
