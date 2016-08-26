@@ -21,7 +21,7 @@ namespace MusicService.Models
         /// <summary>
         /// Track length in the pattern "minutes":"seconds".
         /// </summary>
-        public string Lenght { get; set; }
+        public string Length { get; set; }
 
         /// <summary>
         /// Track number in the Album.

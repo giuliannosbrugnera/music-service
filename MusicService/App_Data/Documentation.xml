@@ -682,21 +682,6 @@
             Method to start the application.
             </summary>
         </member>
-        <member name="T:MusicService.Migrations.Initial">
-            <summary>
-            Generate the snapshot of the database.
-            </summary>
-        </member>
-        <member name="M:MusicService.Migrations.Initial.Up">
-            <summary>
-            Method to create the tables in the database.
-            </summary>
-        </member>
-        <member name="M:MusicService.Migrations.Initial.Down">
-            <summary>
-            Method to delete the tables in the database.
-            </summary>
-        </member>
         <member name="T:MusicService.Models.Album">
             <summary>
             Represent an Album. Associated with a Band. It has 1 to many Tracks.
@@ -832,7 +817,7 @@
             Name given to a Track.
             </summary>
         </member>
-        <member name="P:MusicService.Models.Track.Lenght">
+        <member name="P:MusicService.Models.Track.Length">
             <summary>
             Track length in the pattern "minutes":"seconds".
             </summary>
