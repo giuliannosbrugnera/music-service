@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MusicService
 {
@@ -9,7 +7,9 @@ namespace MusicService
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            // Allow CORS for all origins.
+            var cors = new EnableCorsAttribute("www.example.com", "*", "*");
+            config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
