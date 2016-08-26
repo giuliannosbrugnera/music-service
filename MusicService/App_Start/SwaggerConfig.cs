@@ -39,7 +39,7 @@ namespace MusicService
 
         protected static string GetXmlCommentsPath()
         {
-            return System.String.Format(@"{0}\bin\Documentation.XML", System.AppDomain.CurrentDomain.BaseDirectory);
+            return string.Format(@"{0}\bin\Documentation.XML", System.AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 }
