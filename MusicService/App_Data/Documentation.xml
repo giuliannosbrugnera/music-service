@@ -635,6 +635,14 @@
             Find all tracks
             </summary>
         </member>
+        <member name="M:MusicService.Controllers.TracksController.Get(System.Int32,System.Int32,System.String)">
+            <summary>
+            Find all tracks, supports pagination
+            </summary>
+            <param name="pageSize">Size of he page</param>
+            <param name="pageNumber">Number of the page</param>
+            <param name="orderBy">Attribute to order the results</param>
+        </member>
         <member name="M:MusicService.Controllers.TracksController.GetTrack(System.Int32)">
             <summary>
             Find track by ID

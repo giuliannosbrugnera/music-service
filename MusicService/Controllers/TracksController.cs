@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using MusicService.Models;
 using System;
+using MusicService.Utility;
 
 namespace MusicService.Controllers
 {
@@ -32,6 +33,53 @@ namespace MusicService.Controllers
                                 .Include(a => a.Album.Band)
                                 .Include(a => a.Album.Band.Label);
             return Ok(tracks);
+        }
+
+        /// <summary>
+        /// Find all tracks, supports pagination
+        /// </summary>
+        /// <param name="pageSize">Size of he page</param>
+        /// <param name="pageNumber">Number of the page</param>
+        /// <param name="orderBy">Attribute to order the results</param>
+        [HttpGet]
+        [Route("{pageSize:int}/{pageNumber:int}/{orderBy:alpha?}")]
+        [ResponseType(typeof(Track))]
+        public IHttpActionResult Get(int pageSize, int pageNumber, string orderBy = "")
+        {
+            // Total number of Track items.
+            var totalCount = _context.Tracks.Count();
+            // Calculates the total number of pages required.
+            var totalPages = Math.Ceiling((double)totalCount / pageSize);
+
+            // Include the associated Album, Band and Record Label.
+            IQueryable<Track> trackQuery = _context.Tracks
+                                .Include(a => a.Album)
+                                .Include(a => a.Album.Band)
+                                .Include(a => a.Album.Band.Label);
+            
+            // Check if the property exists.
+            if (QueryHelper.PropertyExists<Track>(orderBy))
+            {
+                // If yes, order the results by the requested property.
+                var orderByExpression = QueryHelper.GetPropertyExpression<Track>(orderBy);
+                trackQuery = trackQuery.OrderBy(orderByExpression);
+            }
+            else
+            {
+                // Otherwise, order the results by the TrackId.
+                trackQuery = trackQuery.OrderBy(c => c.TrackId);
+            }
+
+            // Get pageSize number of elements at the pageNumber page number.
+            var tracks = trackQuery.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            var result = new
+            {
+                totalCount = totalCount,
+                totalPages = totalPages,
+                tracks = tracks
+            };
+
+            return Ok(result);
         }
 
         /// <summary>

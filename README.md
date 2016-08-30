@@ -11,3 +11,4 @@
 - [Swagger](http://swagger.io/). More specifically, using [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)
     - Setup: [WebApi documentation done right with Swagger](https://cmatskas.com/webapi-documentation-done-right-with-swagger/)
 - [Json.NET](http://www.newtonsoft.com/json) for `[JsonIgnore]` annotation.
+- [AngularJS with Web API: server side paging](https://code.msdn.microsoft.com/AngularJS-with-Web-API-43e5de16)
