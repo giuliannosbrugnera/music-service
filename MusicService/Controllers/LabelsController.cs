@@ -33,7 +33,7 @@ namespace MusicService.Controllers
         /// </summary>
         /// <param name="labelId">Record Label identifier</param>
         [HttpGet]
-        [Route("{labelId}")]
+        [Route("{labelId}", Name="GetLabelById")]
         [ResponseType(typeof(Label))]
         public async Task<IHttpActionResult> GetLabel(int labelId)
         {
@@ -104,7 +104,7 @@ namespace MusicService.Controllers
             _context.Labels.Add(label);
             await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = label.LabelId }, label);
+            return Ok(label);
         }
 
         /// <summary>
