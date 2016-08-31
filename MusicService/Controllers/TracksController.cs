@@ -72,6 +72,8 @@ namespace MusicService.Controllers
 
             // Get pageSize number of elements at the pageNumber page number.
             var tracks = trackQuery.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+
+            // Create a result object, containing the results.
             var result = new
             {
                 totalCount = totalCount,
