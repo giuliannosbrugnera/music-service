@@ -97,7 +97,7 @@ namespace MusicService.Controllers
         [HttpPost]
         [Route("")]
         [ResponseType(typeof(Band))]
-        public async Task<IHttpActionResult> PostBand(Band band)
+        public async Task<IHttpActionResult> PostBand([FromBody] Band band)
         {
             if (!ModelState.IsValid)
             {
@@ -107,7 +107,7 @@ namespace MusicService.Controllers
             _context.Bands.Add(band);
             await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = band.BandId }, band);
+            return Ok(band);
         }
 
         /// <summary>

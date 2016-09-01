@@ -111,7 +111,7 @@ namespace MusicService.Controllers
             _context.Albums.Add(album);
             await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = album.AlbumId }, album);
+            return Ok(album);
         }
 
         /// <summary>

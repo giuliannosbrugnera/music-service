@@ -196,7 +196,7 @@ namespace MusicService.Controllers
             _context.Tracks.Add(track);
             await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = track.TrackId }, track);
+            return Ok(track);
         }
 
         /// <summary>
