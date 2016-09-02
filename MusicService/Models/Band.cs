@@ -31,7 +31,6 @@ namespace MusicService.Models
         /// Foreign key for Label.
         /// </summary>
         [ForeignKey("Label")]
-        [JsonIgnore]
         public int LabelRefId { get; set; }
 
         /// <summary>

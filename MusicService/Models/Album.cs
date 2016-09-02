@@ -27,7 +27,6 @@ namespace MusicService.Models
         /// Foreign key for Band.
         /// </summary>
         [ForeignKey("Band")]
-        [JsonIgnore]
 
         public int BandRefId { get; set; }
         

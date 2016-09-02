@@ -32,7 +32,6 @@ namespace MusicService.Models
         /// Foreign key for Album.
         /// </summary>
         [ForeignKey("Album")]
-        [JsonIgnore]
         public int AlbumRefId { get; set; }
         
         /// <summary>
